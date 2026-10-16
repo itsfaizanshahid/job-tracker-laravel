@@ -8,7 +8,7 @@ A web app for tracking job applications: add each application, update its status
 
 - [x] Project setup with MySQL
 - [x] Database design: users and job applications
-- [ ] Register, login and logout
+- [x] Register, login and logout
 - [ ] Add, view, edit and delete applications
 - [ ] Search, filter by status and pagination
 - [ ] Dashboard with counts per status
@@ -19,7 +19,7 @@ A web app for tracking job applications: add each application, update its status
 
 - PHP and Laravel
 - MySQL
-- Blade and Bootstrap
+- Blade and Tailwind CSS
 - Git and GitHub
 
 ## Screenshots

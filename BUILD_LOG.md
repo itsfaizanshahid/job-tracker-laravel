@@ -32,3 +32,36 @@ A short record of what I did at each step and what I learned.
 - `$fillable` lists which fields can be mass-assigned, which protects against unwanted data being saved.
 - An index on `user_id` and `status` speeds up queries that filter by them.
 - `belongsTo` and `hasMany` are two sides of the same relationship.
+
+
+## Step 3: Authentication with Laravel Breeze
+
+**Date:** 2026-10-16
+
+### Goal
+Add register, login and logout, and protect the dashboard so only logged-in users can see it.
+
+### What I did
+1. Installed Laravel Breeze with Composer (`composer require laravel/breeze --dev`).
+2. Ran `php artisan breeze:install` and chose the Blade stack with Tailwind CSS.
+3. Ran `npm install` and `npm run build` to compile the frontend assets.
+4. Started MySQL in XAMPP, then ran `php artisan migrate` to create the auth tables.
+5. Started the app with `php artisan serve` and `npm run dev`.
+
+### Problems and fixes
+- **Windows file locking during `npm install`:** the install failed because Windows kept some files in `node_modules` locked (another process was still using them).
+  **Fix:** stopped running Node processes and closed anything using the project folder, deleted `node_modules`, then ran `npm install` again.
+- **Node version warning:** Node 20.17.0 is slightly older than the 20.19 that this Vite version wants. The build still finished (`✓ built in 2.08s`), so I left it for now and plan to upgrade to the latest LTS.
+- **7 npm vulnerabilities:** these are in development tools only. I did not run `npm audit fix --force` because it can break the setup. I'll run the safe `npm audit fix` after upgrading Node.
+
+### How I tested it
+- Registered a new account, logged out, and logged back in.
+- Visited `/dashboard` while logged out and was redirected to the login page.
+- Checked the `users` table in phpMyAdmin: the password is stored as a long hash, not plain text.
+
+### What I learned
+- Breeze generates the full auth flow (routes, controllers, Blade views) in a few commands.
+- Laravel hashes passwords automatically, and the `auth` middleware protects routes.
+
+### Commit
+`step 3: add authentication with Laravel Breeze`
